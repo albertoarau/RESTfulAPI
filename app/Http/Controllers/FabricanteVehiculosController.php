@@ -26,6 +26,9 @@ public function __construct(){
 			return response()->json(['mensaje' => 'No se encuentra este fabricante', 'codigo' => 404], 404);
 		}
 		return response()->json(['datos' => $fabricante->vehiculos()->get()], 200);
+
+
+		
 	}
 
 	

@@ -16,7 +16,15 @@ class VehiculosController extends Controller {
 	 */
 	public function index()
 	{
-		return response()->json(['datos' => Vehiculo::all()], 200);
+		
+
+
+		$vehiculos = Cache::remember('vehiculos', 10/60, function(){
+
+			return Vehiculo::simplePaginate(15);
+		});
+
+		return response()->json(['siguiente' => $vehiculos->nextPageUrl(), 'anterior'=>$vehiculos->previousPageUrl(), 'datos' => $vehiculos->items()], 200);
 	}
 
 	
