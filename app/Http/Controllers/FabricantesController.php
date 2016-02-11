@@ -4,12 +4,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Fabricante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class FabricantesController extends Controller {
 
 public function __construct(){
 
 	$this->middleware('auth.basic.once', ['only' => ['store', 'update', 'destroy']]);
+
 }
 	
 
@@ -20,7 +22,12 @@ public function __construct(){
 	 */
 	public function index()
 	{
-		return response()->json(['datos' => Fabricante::all()], 200);
+		$fabricantes = Cache::remember('fabricantes', 10/60, function(){
+
+			return Fabricante::all();
+		});
+
+		return response()->json(['datos' => $fabricantes], 200);
 		
 	}
 
