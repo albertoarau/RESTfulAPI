@@ -1,0 +1,4 @@
+//Mensaje personalizado al fallar la autentificacion-
+//Eliminacion de rutas innecesarias-
+/Eliminar los metodos que sobran-
+//Agregar un control de rutas inexsistentes
