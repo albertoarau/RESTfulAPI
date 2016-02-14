@@ -132,7 +132,7 @@ public function __construct(){
 
 		if(!$fabricante){
 
-			return response()->json(['mensaje' => 'No se encuentra este fabricante', 'codigo' => 404], 404);
+			return response()->json(['mensaje' => 'No se encuentra este fabricante en la bd', 'codigo' => 404], 404);
 		}
 
 		$vehiculos = $fabricante->vehiculos;
